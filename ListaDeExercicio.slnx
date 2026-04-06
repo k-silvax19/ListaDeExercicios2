@@ -2,5 +2,6 @@
   <Project Path="Atividade1.ConsoleApp1/ListaDeExercicio.ConsoleApp1.csproj" />
   <Project Path="Atividade2.ConsoleApp1/Atividade2.ConsoleApp1.csproj" />
   <Project Path="Atividade3.ConsoleApp2/Atividade3.ConsoleApp2.csproj" />
+  <Project Path="atividade4.ConsoleApp2/atividade4.ConsoleApp2.csproj" />
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
 </Solution>
