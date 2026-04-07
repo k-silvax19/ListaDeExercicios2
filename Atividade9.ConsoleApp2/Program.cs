@@ -1,57 +1,69 @@
-﻿namespace Atividade9.ConsoleApp2;
-
-class Calculadora
+﻿using System;
+class MediaPonderada
 {
-    public int quantidade;
-    public decimal somaInversos;
-    public decimal mediaHarmonica;
+    public decimal nota1;
 
-    public void QuantidadeNotas()
+    public decimal nota2;
+
+    decimal nota3;
+
+    public decimal peso1;
+
+    public decimal peso2;
+
+    public decimal peso3;
+
+    public decimal mediaPonderada;
+
+    public void Notas()
     {
-        Console.Write("Quantas notas você quer informar? ");
-        quantidade = Convert.ToInt32(Console.ReadLine());
-    }
-    public void LerNotas()
-    {
-        for (int i = 1; i <= quantidade; i++)
-        {
-            Console.Write($"Digite a nota {i}: ");
-            decimal nota = Convert.ToDecimal(Console.ReadLine());
-
-            if (nota == 0)
-            {
-                Console.WriteLine("Nota não pode ser 0 (divisão por zero).");
-                i--;
-                continue;
-            }
-
-            somaInversos += 1 / nota;
-        }
+        Console.Write("Digite a nota 1: ");
+        nota1 = Convert.ToDecimal(Console.ReadLine());
+        Console.Write("Digite a nota 2: ");
+        nota2 = Convert.ToDecimal(Console.ReadLine());
+        Console.Write("Digite a nota 3: ");
+        nota3 = Convert.ToDecimal(Console.ReadLine());
     }
 
-    public void CalcMediaHarmonica()
+    public void Peso()
     {
-        mediaHarmonica = quantidade / somaInversos;
+        Console.Write("Digite o peso da nota 1: ");
+        peso1 = Convert.ToDecimal(Console.ReadLine());
+        Console.Write("Digite o peso da nota 2: ");
+        peso2 = Convert.ToDecimal(Console.ReadLine());
+        Console.Write("Digite o peso da nota 3: ");
+        peso3 = Convert.ToDecimal(Console.ReadLine());
     }
+
+    public void Calculo()
+    {
+        mediaPonderada = (nota1 * peso1 + nota2 * peso2 + nota3 * peso3) / (peso1 + peso2 + peso3);
+    }
+
 }
 class Program
 {
     static void Main(string[] args)
     {
-        Calculadora calc = new Calculadora();
-        calc.somaInversos = 0;
+        MediaPonderada mediaP = new MediaPonderada();
 
         Console.WriteLine("===========================================");
-        Console.WriteLine("Calculadora De Notas com media harmonica");
-        Console.WriteLine("===========================================");
+        Console.WriteLine("Calculadora de Nota com media ponderada");
+        Console.WriteLine("==========================================");
+
 
         Console.WriteLine(" ");
 
-        calc.QuantidadeNotas();
-        calc.LerNotas();
-        calc.CalcMediaHarmonica();
+        mediaP.Notas();
 
-        Console.WriteLine($"\nA Nota com média Harmônica: {calc.mediaHarmonica:F2}");
+        Console.WriteLine(" ");
+
+        mediaP.Peso();
+
+        mediaP.Calculo();
+
+        Console.WriteLine(" ");
+
+        Console.WriteLine($"\nA média ponderada é: {mediaP.mediaPonderada:F2}");
     }
 }
-

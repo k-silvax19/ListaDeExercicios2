@@ -1,73 +1,57 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿namespace Atividade9.ConsoleApp2;
 
-namespace Atividade10.ConsoleApp2;
-
-class Media
+class Calculadora
 {
-
-    public int QuantidadeDeNotas = 0;
+    public int quantidade;
+    public decimal somaInversos;
     public decimal mediaHarmonica;
-    public decimal notaDigitada;
-    public decimal somaInverso;
-    public decimal[] notasAlunos;
-    public void Notas()
+
+    public void QuantidadeNotas()
     {
-        Console.Write("Quantas notas o aluno tem: ");
-        QuantidadeDeNotas = Convert.ToInt32(Console.ReadLine());
-        notasAlunos = new decimal[QuantidadeDeNotas];
+        Console.Write("Quantas notas você quer informar? ");
+        quantidade = Convert.ToInt32(Console.ReadLine());
     }
-
-    public void ContarNotas()
+    public void LerNotas()
     {
-        somaInverso = 0;
-
-        for (int contador = 0; contador < QuantidadeDeNotas; contador++)
+        for (int i = 1; i <= quantidade; i++)
         {
-            Console.Clear();
+            Console.Write($"Digite a nota {i}: ");
+            decimal nota = Convert.ToDecimal(Console.ReadLine());
 
-            Console.Write($"Digite a nota {contador + 1} do aluno: ");
-            notaDigitada = Convert.ToDecimal(Console.ReadLine());
-
-            if (notaDigitada == 0)
+            if (nota == 0)
             {
-                Console.WriteLine("Nota não pode ser 0 na média harmônica!");
-                contador--;
-                Console.ReadLine();
+                Console.WriteLine("Nota não pode ser 0 (divisão por zero).");
+                i--;
                 continue;
             }
-            
-            somaInverso += 1 / notaDigitada;
-            notasAlunos[contador] = notaDigitada;
+
+            somaInversos += 1 / nota;
         }
     }
-    public void CalcularNotas()
+
+    public void CalcMediaHarmonica()
     {
-        mediaHarmonica = QuantidadeDeNotas / somaInverso;
+        mediaHarmonica = quantidade / somaInversos;
     }
 }
 class Program
 {
     static void Main(string[] args)
     {
-        Media media = new Media();
-        media.mediaHarmonica = 0;
-        media.notaDigitada = 0;
-        media.somaInverso = 0;
+        Calculadora calc = new Calculadora();
+        calc.somaInversos = 0;
 
-        Console.Clear();
+        Console.WriteLine("===========================================");
+        Console.WriteLine("Calculadora De Notas com media harmonica");
+        Console.WriteLine("===========================================");
 
-        Console.WriteLine("===============================");
-        Console.WriteLine("Calculadora de nota media harmonica");
-        Console.WriteLine("===============================");
+        Console.WriteLine(" ");
 
-        Console.ReadLine();
+        calc.QuantidadeNotas();
+        calc.LerNotas();
+        calc.CalcMediaHarmonica();
 
-        media.Notas();
-        media.ContarNotas();
-        media.CalcularNotas();
-
-        Console.WriteLine($"A média harmônica é: {media.mediaHarmonica:F2}");
-
-        Console.ReadLine();
+        Console.WriteLine($"\nA Nota com média Harmônica: {calc.mediaHarmonica:F2}");
     }
 }
+
